@@ -18,4 +18,4 @@ On the 30/04/2024, ticket `b` was:
 - Used on public transport, bringing the credit down to `0`
 - Scanned again and data saved as `b_0`
 # Current State
-By comparing [b_0.nfc]() and [b_1.nfc](), I can only assume that the data pertaining to credit count is stored in block ranges `[5, 6]` and `[11, 14]`, as those are the only differences the program found for ticket `b` before and after use of the credit.
+By comparing [b_0.nfc]() and [b_1.nfc](), I can only assume that the data pertaining to credit count is stored in block ranges `[5, 6]` and `[11, 14]`, as those are the only differences found for ticket `b` before and after use of the ticket.
