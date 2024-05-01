@@ -1,6 +1,6 @@
 from sys import exit as sys_exit
 
-from modules.card_class import Card
+from modules.ticket_class import Ticket
 
 
 def exit_code_generator(__exit_reason: str, *__args) -> str:
@@ -25,39 +25,39 @@ def sanitise_data(__data: list[str]) -> list[str]:
     return sanitised_data
 
 
-def convert_file_data_to_card_class(__file_data: list[str]) -> Card:
-    card: Card = Card()
+def convert_data_to_ticket(__data: list[str]) -> Ticket:
+    ticket: Ticket = Ticket()
 
-    for line in __file_data:
+    for line in __data:
         key, value = line.split(":")
         value = value[1:]
 
         if key == "Filetype":
-            card.set_file_type(value)
+            ticket.set_file_type(value)
 
         elif key == "Version":
-            card.set_file_type_version(value)
+            ticket.set_file_type_version(value)
 
         elif key == "Device type":
-            card.set_device_type(value)
+            ticket.set_device_type(value)
 
         elif key == "UID":
-            card.set_uid(value)
+            ticket.set_uid(value)
 
         elif key == "ST25TB Type":
-            card.set_st25tb_data_type(value)
+            ticket.set_st25tb_data_type(value)
 
         elif key == "System OTP Block":
-            card.set_system_otp_block(value)
+            ticket.set_system_otp_block(value)
 
         elif "Block " in key:
-            card.add_block_to_matrix(value)
+            ticket.add_block_to_matrix(value)
 
         else:
-            exit_code: str = exit_code_generator("data_manipulator.py > cconvert_file_data_to_card_class > unmanaged data type", key, value)
+            exit_code: str = exit_code_generator("data_manipulator.py > convert_data_to_ticket > unmanaged data type", key, value)
             sys_exit(exit_code)
 
-    return card
+    return ticket
 
 
 def __compare_strings(__string_a: str, __string_b: str, __differences: dict, __attribute_name: str) -> dict:
@@ -86,13 +86,13 @@ def __compare_lists(__list_a: list, __list_b: list, __differences: dict, __attri
     return __differences
 
 
-def compare_card_data(__card_a: Card, __card_b: Card) -> dict:
+def compare_ticket_data(__ticket_a: Ticket, __ticket_b: Ticket) -> dict:
     differences: dict = {}
-    card_class_attributes: list[str] = [x for x  in __card_a.__dir__() if "_Card" in x]
+    ticket_class_attributes: list[str] = [x for x  in __ticket_a.__dir__() if "_Ticket" in x]
 
-    for attribute_name in card_class_attributes:
-        attribute_a = __card_a.__getattribute__(attribute_name)
-        attribute_b = __card_b.__getattribute__(attribute_name)
+    for attribute_name in ticket_class_attributes:
+        attribute_a = __ticket_a.__getattribute__(attribute_name)
+        attribute_b = __ticket_b.__getattribute__(attribute_name)
         
         attribute_a_type = type(attribute_a)
 
@@ -103,7 +103,7 @@ def compare_card_data(__card_a: Card, __card_b: Card) -> dict:
             differences = __compare_lists(attribute_a, attribute_b, differences, attribute_name)
 
         else:
-            exit_code: str = exit_code_generator("data_anallyser.py > compare_card_data > unmanaged attribute type comparison", attribute_a_type)
+            exit_code: str = exit_code_generator("data_manipulator.py > compare_ticket_data > unmanaged attribute type comparison", attribute_a_type)
             sys_exit(exit_code)
 
     return differences

@@ -1,8 +1,7 @@
-class Card:
+class Ticket:
     def __init__(self) -> None:
         self.__file_type: str = None
         self.__file_type_version: str = None
-        self.__filename: str = None
 
         self.__device_type: str = None
         self.__uid: str = None
@@ -20,11 +19,6 @@ class Card:
 
     def set_file_type_version(self, __file_type_version: str) -> None:
         self.__file_type_version = __file_type_version
-        return
-    
-
-    def set_filename(self, __filename: str) -> None:
-        self.__filename = __filename
         return
     
     
@@ -55,7 +49,6 @@ class Card:
     
     def __repr__(self) -> str:
         representation: str = self.__file_type + " v" + self.__file_type_version + " - " + self.__device_type + "\n"
-        representation += "Name: " + self.__filename + "\n"
         representation += "UID: " + self.__uid + "\n"
         representation += "Data Type: " + self.__st25tb_data_type + "\n"
 
