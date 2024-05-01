@@ -1,8 +1,7 @@
 from sys import exit as sys_exit
 
 from modules.file_manipulator import get_directory_filenames, get_file_data
-from modules.data_manipulator import exit_code_generator, sanitise_file_data, convert_file_data_to_card_class
-from modules.data_analyser import compare_card_data
+from modules.data_manipulator import exit_code_generator, sanitise_data, convert_file_data_to_card_class, compare_card_data
 
 from modules.card_class import Card
 
@@ -15,10 +14,10 @@ def run() -> None:
 
     for filename in list_of_filepaths:
         filepath: str = resource_directory_name + "\\" + filename
-        file_data: list[str] = get_file_data(filepath)
-        sanitised_file_data: list[str] = sanitise_file_data(file_data)
+        data: list[str] = get_file_data(filepath)
+        sanitised_data: list[str] = sanitise_data(data)
 
-        card: Card = convert_file_data_to_card_class(sanitised_file_data)
+        card: Card = convert_file_data_to_card_class(sanitised_data)
         card.set_filename(filename)
         list_of_cards.append(card)
 
