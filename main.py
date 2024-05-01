@@ -4,7 +4,7 @@ from modules.data_analyser import compare_card_data
 from modules.card_class import Card
 
 
-def run():
+def run() -> None:
     resource_directory_name: str = "resources"
     list_of_filepaths: list[str] = get_filepaths_from_resource_directory(resource_directory_name)
 
@@ -23,6 +23,7 @@ def run():
     for key, value in card_data_differences.items():
         print(key, "-", value)
         
+    return
 
 
 if __name__ == "__main__":
