@@ -10,6 +10,5 @@ The file naming goes as follows: `<CARD>_<CRED>.nfc`
   - `a_8` holds `8` credits
   - `b_0` holds `0` credit
   - `b_1` holds `1` credit
-
-# Code
-The []
+# Current State
+By comparing [b_0.nfc]() and [b_1.nfc](), I can only suppose that the data pertaining to the credits is stored in blocks range `[5, 6]` and `[11, 14]`, as the program only found differences in those blocks.
