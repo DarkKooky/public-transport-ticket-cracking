@@ -109,5 +109,19 @@ def compare_ticket_data(__ticket_a: Ticket, __ticket_b: Ticket) -> dict:
     return differences
 
 
-def compare_blocks(__block_a: hex, __block_b: hex):
-    pass
+def convert_hexes_to_decimals(__hexes: list[str]) -> list[int]:
+    decimals: list[int] = []
+
+    for i in range(len(__hexes)):
+        deecimal: int = int(__hexes[i], 16)
+        decimals.append(deecimal)
+
+    return decimals
+
+
+def absolute_decimal_substraction(__decimals_0: list[int], __decimals_1: list[int]) -> list[int]:
+    return [abs(__decimals_0[i] - __decimals_1[i]) for i in range(len(__decimals_0))]
+
+
+def convert_decimals_to_hexes(__decimals: list[int]) -> list[str]:
+    return [hex(decimal)[2:].upper() for decimal in __decimals]
