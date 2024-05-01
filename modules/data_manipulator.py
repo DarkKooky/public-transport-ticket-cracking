@@ -86,7 +86,7 @@ def __compare_lists(__list_a: list, __list_b: list, __differences: dict, __attri
     return __differences
 
 
-def compare_ticket_data(__ticket_a: Ticket, __ticket_b: Ticket) -> dict:
+def find_ticket_data_differences(__ticket_a: Ticket, __ticket_b: Ticket) -> dict:
     differences: dict = {}
     ticket_class_attributes: list[str] = [x for x  in __ticket_a.__dir__() if "_Ticket" in x]
 
@@ -119,8 +119,14 @@ def convert_hexes_to_decimals(__hexes: list[str]) -> list[int]:
     return decimals
 
 
-def absolute_decimal_substraction(__decimals_0: list[int], __decimals_1: list[int]) -> list[int]:
-    return [abs(__decimals_0[i] - __decimals_1[i]) for i in range(len(__decimals_0))]
+def absolute_decimals_substractions(__decimals_0: list[int], __decimals_1: list[int]) -> list[int]:
+    __substraction_results: list[int] = []
+    
+    for i in range(len(__decimals_0)):
+        absolute_subtraction: int = abs(__decimals_0[i] - __decimals_1[i])
+        __substraction_results.append(absolute_subtraction)
+
+    return __substraction_results
 
 
 def convert_decimals_to_hexes(__decimals: list[int]) -> list[str]:
