@@ -1,5 +1,17 @@
 from sys import exit as sys_exit
+
 from modules.card_class import Card
+
+
+def exit_code_generator(__exit_reason: str, *__args) -> str:
+    padding: str = " " * 50 + "\n"
+    exit_code: str = padding + __exit_reason + "\n"
+
+    for arg in __args:
+        exit_code += padding + str(arg)
+
+    exit_code += padding
+    return exit_code
 
 
 def sanitise_file_data(__file_data: list[str]) -> list[str]:
@@ -42,15 +54,7 @@ def convert_file_data_to_card_class(__file_data: list[str]) -> Card:
             card.add_block_to_matrix(value)
 
         else:
-            exit_code: str = "=" * 50 + "\n"
-            exit_code += "Unmanaged data\n"
-            exit_code += "=" * 30 + "\n"
-            exit_code += "KEY\n"
-            exit_code += key + "\n"
-            exit_code += "=" * 50 + "\n"
-            exit_code += "VALUE\n"
-            exit_code += value + "\n"
-            exit_code += "=" * 50 + "\n"
+            exit_code: str = exit_code_generator("data_manipulator.py > cconvert_file_data_to_card_class > unmanaged data type", key, value)
             sys_exit(exit_code)
 
     return card

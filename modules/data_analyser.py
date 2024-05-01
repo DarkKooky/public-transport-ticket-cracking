@@ -1,4 +1,7 @@
 from sys import exit as sys_exit
+
+from modules.data_manipulator import exit_code_generator
+
 from modules.card_class import Card
 
 
@@ -45,12 +48,7 @@ def compare_card_data(__card_a: Card, __card_b: Card) -> dict:
             differences = __compare_lists(attribute_a, attribute_b, differences, attribute_name)
 
         else:
-            exit_code: str = "=" * 50 + "\n"
-            exit_code += "Unmanaged attribute type comparison\n"
-            exit_code += "=" * 50 + "\n"
-            exit_code += "ATTRIBUTE TYPE\n"
-            exit_code += str(attribute_a_type)  + "\n"
-            exit_code += "=" * 50 + "\n"
+            exit_code: str = exit_code_generator("data_anallyser.py > compare_card_data > unmanaged attribute type comparison", attribute_a_type)
             sys_exit(exit_code)
 
     return differences
