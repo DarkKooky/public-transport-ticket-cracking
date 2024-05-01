@@ -1,4 +1,4 @@
-from modules.file_manager import get_filepaths_from_resource_directory, get_file_data
+from modules.file_manipulator import get_filepaths_from_resource_directory, get_file_data
 from modules.data_manipulator import sanitise_file_data, convert_file_data_to_card_class
 from modules.data_analyser import compare_card_data
 from modules.card_class import Card
