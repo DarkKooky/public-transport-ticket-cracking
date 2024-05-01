@@ -1,8 +1,8 @@
 from os import listdir
 
 
-def get_filepaths_from_resource_directory(__resource_directory_name: str) -> list[str]:
-    return listdir("resources")
+def get_directory_filenames(__directory_name: str) -> list[str]:
+    return listdir(__directory_name)
 
 
 def get_file_data(__filepath: str) -> list[str]:
